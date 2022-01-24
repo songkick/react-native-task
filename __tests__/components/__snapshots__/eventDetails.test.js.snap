@@ -11,15 +11,52 @@ exports[`EventDetails renders event info correctly 1`] = `
     }
   }
 >
-  <Image
-    source={1}
+  <View
     style={
       Object {
         "height": 250,
         "width": "100%",
       }
     }
-  />
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    />
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "bottom": 12,
+            "position": "absolute",
+            "right": 12,
+          }
+        }
+        testID="selected"
+      />
+    </View>
+  </View>
   <Text
     style={
       Object {

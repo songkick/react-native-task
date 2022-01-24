@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   SectionList,
@@ -6,11 +6,13 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  ActivityIndicator,
 } from "react-native";
 
-import { calendarData } from "../calendarData";
+import { useLikes } from "../contexts/likedContext";
+import { calendarData as cData } from "../calendarData";
 
-const UserCalendar = ({ navigation }) => {
+export const UserCalendar = ({ likes, calendarData = [], onEvent }) => {
   const headliner = (performances) => {
     return performances[0].displayName;
   };
@@ -24,15 +26,10 @@ const UserCalendar = ({ navigation }) => {
   };
 
   const renderEventItem = ({ item }) => {
+    const hasEventLike = likes.ids?.includes(item.id) ?? false;
+
     return (
-      <TouchableOpacity
-        style={styles.eventItem}
-        onPress={() =>
-          navigation.navigate("Event", {
-            event: item,
-          })
-        }
-      >
+      <TouchableOpacity style={styles.eventItem} onPress={() => onEvent(item)}>
         <Image
           style={styles.image}
           source={require("../img/music-icon-band.jpeg")}
@@ -44,6 +41,12 @@ const UserCalendar = ({ navigation }) => {
           </Text>
           <Text style={styles.eventVenue}>{item.venue.displayName}</Text>
         </View>
+        {hasEventLike && (
+          <Image
+            style={styles.eventLike}
+            source={require("../img/thumbs-up-selected.png")}
+          />
+        )}
       </TouchableOpacity>
     );
   };
@@ -63,6 +66,60 @@ const UserCalendar = ({ navigation }) => {
     </View>
   );
 };
+
+export default function ConnectedUserCalendar({ navigation }) {
+  const [calendarData, setCalendarData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const likes = useLikes();
+
+  useEffect(() => {
+    // https://api.songkick.com/api/3.0/users/{username}/calendar.json?reason={reason}&apikey={your_api_key}
+    const fetchCalendarData = async () => {
+      const API_KEY = "1NJP9XKo6HZrYczZ";
+      try {
+        const response = await fetch(
+          `https://api.songkick.com/api/3.0/users/super.user/calendar.json?reason=tracked_artist&apikey=${API_KEY}`
+        );
+        const data = await response.json();
+
+        if (data.resultsPage.error) {
+          // TODO: returning mock data due to disabled key
+          setCalendarData(cData);
+          setLoading(false);
+          return;
+        }
+
+        setCalendarData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCalendarData();
+  }, []);
+
+  const handleEvent = (item) => {
+    navigation.navigate("Event", {
+      event: item,
+    });
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  return (
+    <UserCalendar
+      likes={likes}
+      calendarData={calendarData}
+      onEvent={handleEvent}
+    />
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -92,8 +149,8 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   eventWrapper: {
+    flex: 1,
     flexDirection: "column",
-    alignItems: "flex-start",
   },
   eventTitle: {
     fontSize: 16,
@@ -110,6 +167,14 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     color: "black",
   },
+  eventLike: {
+    marginLeft: 6,
+    height: 27,
+    width: 27,
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
-
-export default UserCalendar;

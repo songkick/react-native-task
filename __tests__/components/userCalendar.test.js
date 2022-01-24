@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import { EventDetails } from "../../src/components/EventDetails";
+import { UserCalendar } from "../../src/components/UserCalendar";
 import { LikedContext } from "../../src/contexts/likedContext";
-import { event } from "../fixtures/events";
+import { events } from "../fixtures/events";
 
-describe("EventDetails", () => {
+describe("UserCalendar", () => {
   const wrapper = (props) => {
     const contextValue = {
       ids: [],
@@ -13,16 +13,16 @@ describe("EventDetails", () => {
 
     return (
       <LikedContext.Provider value={contextValue}>
-        <EventDetails {...props} />
+        <UserCalendar {...props} />
       </LikedContext.Provider>
     );
   };
 
-  test("renders event info correctly", () => {
+  test("renders calendar correctly", () => {
     const mockHandler = () => {
-      console.log("onEventLike called");
+      console.log("onEvent called");
     };
-    const props = { event, eventLike: true, onEventLike: mockHandler };
+    const props = { likes: [], calendarData: events, onEvent: mockHandler };
     const json = renderer.create(wrapper(props)).toJSON();
     expect(json).toMatchSnapshot();
   });

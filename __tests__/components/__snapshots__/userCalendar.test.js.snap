@@ -1,0 +1,512 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserCalendar renders calendar correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flex": 1,
+      "paddingHorizontal": 8,
+    }
+  }
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "ageRestriction": null,
+              "displayName": "Willy Mason with Voka Gentle at The Boileroom (November 2, 2021)",
+              "flaggedAsEnded": false,
+              "id": 39792892,
+              "location": Object {
+                "city": "Guildford, UK",
+                "lat": 51.23992,
+                "lng": -0.57299,
+              },
+              "performance": Array [
+                Object {
+                  "artist": Object {
+                    "displayName": "Willy Mason",
+                    "id": 61968,
+                    "identifier": Array [
+                      Object {
+                        "href": "https://api.songkick.com/api/3.0/artists/mbid:d5c9ee75-5711-469f-b671-669dcde5c9bf.json",
+                        "mbid": "d5c9ee75-5711-469f-b671-669dcde5c9bf",
+                      },
+                    ],
+                    "uri": "https://www.songkick.com/artists/61968-willy-mason?utm_source=2356&utm_medium=partner",
+                  },
+                  "billing": "headline",
+                  "billingIndex": 1,
+                  "displayName": "Willy Mason",
+                  "id": 75227287,
+                },
+                Object {
+                  "artist": Object {
+                    "displayName": "Voka Gentle",
+                    "id": 10147281,
+                    "identifier": Array [
+                      Object {
+                        "href": "https://api.songkick.com/api/3.0/artists/mbid:13141069-19bc-4d5d-96a3-55fc376ff4ec.json",
+                        "mbid": "13141069-19bc-4d5d-96a3-55fc376ff4ec",
+                      },
+                    ],
+                    "uri": "https://www.songkick.com/artists/10147281-voka-gentle?utm_source=2356&utm_medium=partner",
+                  },
+                  "billing": "support",
+                  "billingIndex": 2,
+                  "displayName": "Voka Gentle",
+                  "id": 75699031,
+                },
+              ],
+              "popularity": 0.011677,
+              "start": Object {
+                "date": "2021-11-02",
+                "datetime": "2021-11-02T19:00:00+0000",
+                "time": "19:00:00",
+              },
+              "status": "ok",
+              "type": "Concert",
+              "uri": "https://www.songkick.com/concerts/39792892-willy-mason-at-boileroom?utm_source=2356&utm_medium=partner",
+              "venue": Object {
+                "displayName": "The Boileroom",
+                "id": 3268,
+                "lat": 51.23992,
+                "lng": -0.57299,
+                "metroArea": Object {
+                  "country": Object {
+                    "displayName": "UK",
+                  },
+                  "displayName": "London",
+                  "id": 24426,
+                  "uri": "https://www.songkick.com/metro-areas/24426-uk-london?utm_source=2356&utm_medium=partner",
+                },
+                "uri": "https://www.songkick.com/venues/3268-boileroom?utm_source=2356&utm_medium=partner",
+              },
+            },
+            Object {
+              "ageRestriction": null,
+              "displayName": "Mathilda Homer at Lafayette (November 5, 2021)",
+              "flaggedAsEnded": false,
+              "id": 39794127,
+              "location": Object {
+                "city": "London, UK",
+                "lat": 51.53417,
+                "lng": -0.12596,
+              },
+              "performance": Array [
+                Object {
+                  "artist": Object {
+                    "displayName": "Mathilda Homer",
+                    "id": 9545879,
+                    "identifier": Array [
+                      Object {
+                        "href": "https://api.songkick.com/api/3.0/artists/mbid:1fe3de69-4bbd-4f13-bee4-2581f4bdd675.json",
+                        "mbid": "1fe3de69-4bbd-4f13-bee4-2581f4bdd675",
+                      },
+                    ],
+                    "uri": "https://www.songkick.com/artists/9545879-mathilda-homer?utm_source=2356&utm_medium=partner",
+                  },
+                  "billing": "headline",
+                  "billingIndex": 1,
+                  "displayName": "Mathilda Homer",
+                  "id": 75229241,
+                },
+              ],
+              "popularity": 0.000773,
+              "start": Object {
+                "date": "2021-11-05",
+                "datetime": "2021-11-05T19:00:00+0000",
+                "time": "19:00:00",
+              },
+              "status": "ok",
+              "type": "Concert",
+              "uri": "https://www.songkick.com/concerts/39794127-mathilda-homer-at-lafayette?utm_source=2356&utm_medium=partner",
+              "venue": Object {
+                "displayName": "Lafayette",
+                "id": 4364813,
+                "lat": 51.53417,
+                "lng": -0.12596,
+                "metroArea": Object {
+                  "country": Object {
+                    "displayName": "UK",
+                  },
+                  "displayName": "London",
+                  "id": 24426,
+                  "uri": "https://www.songkick.com/metro-areas/24426-uk-london?utm_source=2356&utm_medium=partner",
+                },
+                "uri": "https://www.songkick.com/venues/4364813-lafayette?utm_source=2356&utm_medium=partner",
+              },
+            },
+            Object {
+              "ageRestriction": null,
+              "displayName": "Easy Life with BERWYN at O2 Academy Brixton (November 16, 2021)",
+              "flaggedAsEnded": false,
+              "id": 39207965,
+              "location": Object {
+                "city": "London, UK",
+                "lat": 51.46516,
+                "lng": -0.11493,
+              },
+              "performance": Array [
+                Object {
+                  "artist": Object {
+                    "displayName": "Easy Life",
+                    "id": 8282533,
+                    "identifier": Array [
+                      Object {
+                        "href": "https://api.songkick.com/api/3.0/artists/mbid:75c13fa5-c939-4caf-855e-13d1cd332da6.json",
+                        "mbid": "75c13fa5-c939-4caf-855e-13d1cd332da6",
+                      },
+                    ],
+                    "uri": "https://www.songkick.com/artists/8282533-easy-life?utm_source=2356&utm_medium=partner",
+                  },
+                  "billing": "headline",
+                  "billingIndex": 1,
+                  "displayName": "Easy Life",
+                  "id": 74220176,
+                },
+                Object {
+                  "artist": Object {
+                    "displayName": "BERWYN",
+                    "id": 10142114,
+                    "identifier": Array [
+                      Object {
+                        "href": "https://api.songkick.com/api/3.0/artists/mbid:1dca0c81-8361-424d-993f-1b40bcc22ae0.json",
+                        "mbid": "1dca0c81-8361-424d-993f-1b40bcc22ae0",
+                      },
+                    ],
+                    "uri": "https://www.songkick.com/artists/10142114-berwyn?utm_source=2356&utm_medium=partner",
+                  },
+                  "billing": "support",
+                  "billingIndex": 2,
+                  "displayName": "BERWYN",
+                  "id": 75543615,
+                },
+              ],
+              "popularity": 0.01075,
+              "start": Object {
+                "date": "2021-11-16",
+                "datetime": "2021-11-16T19:00:00+0000",
+                "time": "19:00:00",
+              },
+              "status": "ok",
+              "type": "Concert",
+              "uri": "https://www.songkick.com/concerts/39207965-easy-life-at-o2-academy-brixton?utm_source=2356&utm_medium=partner",
+              "venue": Object {
+                "displayName": "O2 Academy Brixton",
+                "id": 17522,
+                "lat": 51.46516,
+                "lng": -0.11493,
+                "metroArea": Object {
+                  "country": Object {
+                    "displayName": "UK",
+                  },
+                  "displayName": "London",
+                  "id": 24426,
+                  "uri": "https://www.songkick.com/metro-areas/24426-uk-london?utm_source=2356&utm_medium=partner",
+                },
+                "uri": "https://www.songkick.com/venues/17522-o2-academy-brixton?utm_source=2356&utm_medium=partner",
+              },
+            },
+          ],
+          "title": "November 2021",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <Text
+          style={
+            Object {
+              "backgroundColor": "white",
+              "color": "black",
+              "fontSize": 24,
+              "fontWeight": "700",
+              "paddingVertical": 8,
+            }
+          }
+        >
+          November 2021
+        </Text>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#E4E5E7",
+              "borderRadius": 12,
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+              "marginVertical": 4,
+              "opacity": 1,
+              "padding": 12,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 54,
+                "marginRight": 12,
+                "width": 54,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                }
+              }
+            >
+              Willy Mason
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                }
+              }
+            >
+              02 Nov 2021
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                }
+              }
+            >
+              The Boileroom
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#E4E5E7",
+              "borderRadius": 12,
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+              "marginVertical": 4,
+              "opacity": 1,
+              "padding": 12,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 54,
+                "marginRight": 12,
+                "width": 54,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                }
+              }
+            >
+              Mathilda Homer
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                }
+              }
+            >
+              05 Nov 2021
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                }
+              }
+            >
+              Lafayette
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#E4E5E7",
+              "borderRadius": 12,
+              "flexDirection": "row",
+              "justifyContent": "flex-start",
+              "marginVertical": 4,
+              "opacity": 1,
+              "padding": 12,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 54,
+                "marginRight": 12,
+                "width": 54,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 16,
+                  "fontWeight": "700",
+                }
+              }
+            >
+              Easy Life
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                }
+              }
+            >
+              16 Nov 2021
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "black",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                }
+              }
+            >
+              O2 Academy Brixton
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      />
+    </View>
+  </RCTScrollView>
+</View>
+`;
