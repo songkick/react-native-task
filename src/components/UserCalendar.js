@@ -10,7 +10,6 @@ import {
 } from "react-native";
 
 import { useLikes } from "../contexts/likedContext";
-import { calendarData as cData } from "../calendarData";
 
 export const UserCalendar = ({ likes, calendarData = [], onEvent }) => {
   const headliner = (performances) => {
@@ -70,10 +69,28 @@ export const UserCalendar = ({ likes, calendarData = [], onEvent }) => {
 export default function ConnectedUserCalendar({ navigation }) {
   const [calendarData, setCalendarData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const likes = useLikes();
 
   useEffect(() => {
-    // https://api.songkick.com/api/3.0/users/{username}/calendar.json?reason={reason}&apikey={your_api_key}
+    const sortCalendarData = (data) => {
+      let dataMap = new Map();
+      data.forEach((item) => {
+        const date = new Date(item.createdAt).toLocaleDateString("en-GB", {
+          month: "long",
+          year: "numeric",
+        });
+        if (!dataMap.has(date)) {
+          dataMap.set(date, [item.event]);
+        } else {
+          const current = dataMap.get(date);
+          dataMap.set(date, [...current, item.event]);
+        }
+      });
+
+      return Array.from(dataMap, ([title, data]) => ({ title, data }));
+    };
+
     const fetchCalendarData = async () => {
       const API_KEY = "1NJP9XKo6HZrYczZ";
       try {
@@ -83,13 +100,14 @@ export default function ConnectedUserCalendar({ navigation }) {
         const data = await response.json();
 
         if (data.resultsPage.error) {
-          // TODO: returning mock data due to disabled key
-          setCalendarData(cData);
           setLoading(false);
+          setError(true);
           return;
         }
 
-        setCalendarData(data);
+        setCalendarData(
+          sortCalendarData(data.resultsPage.results.calendarEntry)
+        );
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -104,9 +122,17 @@ export default function ConnectedUserCalendar({ navigation }) {
     });
   };
 
+  if (error) {
+    return (
+      <View style={styles.baseContainer}>
+        <Text>There was an error loading your data!</Text>
+      </View>
+    );
+  }
+
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
+      <View style={styles.baseContainer}>
         <ActivityIndicator size="large" />
       </View>
     );
@@ -172,7 +198,7 @@ const styles = StyleSheet.create({
     height: 27,
     width: 27,
   },
-  loadingContainer: {
+  baseContainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

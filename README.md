@@ -74,7 +74,8 @@ _Good luck, and have fun!_
 
 - I simply setup a fetch block within a 'useEffect' to run before load so that we can fetch the data and then populate the screen. Using the credentials provided to complete the request.
 - I then noted there was an issue being caught and upon debugging found that the API Key provided was disabled.
-- I added a conditional and loading state to prevent the app from crashing at this point when data wasn't returned. Where I then re-added the mock data when the error is received just for testing purposes. But the loading screen or an error boundary might be more useful with a retry button as this would give the user better feedback to the issue and allow them to recover the session.
+- I added a conditional and loading state to prevent the app from crashing at this point when data wasn't returned. An error boundary might be more useful with a retry button in this scenario as this would give the user better feedback to the issue and allow them to recover the session.
+- I got in contact with someone at Songkick to enable the API Key and have since been able to update the calendar to use the data from the API. I created a method to help sort the data so that it could comply with the contract required by a SectionList component.
 
 ### Testing
 
