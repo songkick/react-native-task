@@ -88,3 +88,4 @@ Given more time I would have liked to implement:
 - Error boundary component wrapper to capture any thrown errors and handle them gracefully for the user. This would give many options to the user such as retrying/refreshing the screen, restarting the app, or simply popping the navigation to the previous screen.
 - Pagination on the User Calendar, which could include a load more at the footer when the threshold is reached to trigger the list to load more data. As well as a pull to refresh at the top if needed to refresh the stored data.
 - Better testing around handlers and state changes.
+- Move API keys out of code and into something like dotenv so these can be injected on build.
