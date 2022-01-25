@@ -80,3 +80,11 @@ _Good luck, and have fun!_
 ### Testing
 
 - I updated the tests to pass by creating a mock context wrapper and then split the logic for each screen to use a connected pattern so that it would make testing easier in the future by being able to pass the data and handlers to the child components. This means that you can simply pass mock data through to this dumb component and test the expectations easily.
+
+### Other talking points
+
+Given more time I would have liked to implement:
+
+- Error boundary component wrapper to capture any thrown errors and handle them gracefully for the user. This would give many options to the user such as retrying/refreshing the screen, restarting the app, or simply popping the navigation to the previous screen.
+- Pagination on the User Calendar, which could include a load more at the footer when the threshold is reached to trigger the list to load more data. As well as a pull to refresh at the top if needed to refresh the stored data.
+- Better testing around handlers and state changes.
