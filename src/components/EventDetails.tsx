@@ -1,18 +1,24 @@
-import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
+import { Event } from '../calendarData';
+import { EventLikesButton } from './EventLikesButton';
 
-const EventDetails = ({ route }) => {
+interface Props extends NativeStackScreenProps<RootStackParamList, 'Event'> {}
+
+function EventDetails({ route }: Props) {
   const event = route.params.event;
 
-  const eventTitle = (eventData) => {
+  const eventTitle = (eventData: Event) => {
     return `${eventData.performance[0].displayName} at ${eventData.venue.displayName}`;
   };
 
-  const formatEventDate = (date) => {
-    return new Date(date).toLocaleDateString("en-GB", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
+  const formatEventDate = (date: string) => {
+    return new Date(date).toLocaleDateString('en-GB', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
     });
   };
 
@@ -20,13 +26,13 @@ const EventDetails = ({ route }) => {
     <View style={styles.screen}>
       <Image
         style={styles.heroImage}
-        source={require("../img/gig-image.jpeg")}
+        source={require('../img/gig-image.jpeg')}
       />
       <Text style={styles.title}>{eventTitle(event)}</Text>
       <Text style={styles.date}>{formatEventDate(event.start.date)}</Text>
       <View style={styles.lineUpContainer}>
         <Text style={styles.lineUpTitle}>Line Up</Text>
-        {event.performance.map((artist) => {
+        {event.performance.map(artist => {
           return (
             <Text key={artist.id} style={styles.artistName}>
               {artist.displayName}
@@ -34,46 +40,47 @@ const EventDetails = ({ route }) => {
           );
         })}
       </View>
+      <EventLikesButton eventId={event.id} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     padding: 12,
   },
   heroImage: {
-    width: "100%",
+    width: '100%',
     height: 250,
   },
   title: {
     fontSize: 24,
-    fontWeight: "700",
-    color: "black",
+    fontWeight: '700',
+    color: 'black',
     marginVertical: 12,
   },
   date: {
     fontSize: 16,
-    fontWeight: "400",
-    color: "black",
+    fontWeight: '400',
+    color: 'black',
     marginBottom: 12,
   },
   lineUpContainer: {
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   lineUpTitle: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "black",
+    fontWeight: '700',
+    color: 'black',
     marginBottom: 6,
   },
   artistName: {
     fontSize: 14,
-    fontWeight: "400",
-    color: "black",
+    fontWeight: '400',
+    color: 'black',
   },
 });
 
