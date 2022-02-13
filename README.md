@@ -52,3 +52,55 @@ We would like you to make the following improvements:
 A perfect looking screen is much less important than making sure you are pleased with your code quality and have something that works end-to-end at least minimally.
 
 *Good luck, and have fun!*
+
+## My Additions
+
+My first task was to convert the project to use TypeScript, ESLint and Prettier. I consider these standard
+requirements for any project I work on these days, and the time savings lost by implementing them up front
+I gained later by not having to mentally keep track of APIs as TypeScript can handle these for me.
+
+Next, I installed React Native Test Library and updated the existing test for the EventDetails screen.
+
+Next I removed the snapshot test as I find these utterly pointless and raise too many false
+positives during development, as half the time when updating project code it breaks snapshots for no actual
+reason other than they don't match - even if the functionality is identical. For this reason I prefer to
+test how the screens and components would be actually used by an end user, as the only time I want to know
+a test has failed is when it functionally breaks. For testing how a component actually looks there are better
+tools such as visual regression testing.
+
+Following this, I added a failing test that checked if a like button existed on the screen and was set to
+the default 'not-liked' setting. If I'm 100% honest, this was my intent but I still hadn't fully formed the
+actual code in my head yet so did the opposite of this state. Either way, I had a failing test I could then
+build my code against.
+
+My next step was to create the code to pass the test. I chose to create a context provider that would allow
+passing an array of 'liked' event IDs, and subsequently created a custom hook that passed this value and a
+toggle function. I could then use the values from this hook in the event details screen to check whether
+the screen's event id was included in this list and display the appropriate like/unlike button accordingly -
+with a press handler than took care of this functionality.
+
+After a small refactor to encapsulate this feature within its own component, I was able to update the failing
+unit test to make sure when pressing the like/unlike button the component updated accordingly.
+
+Next I imported this same hook into the calendar screen and was able to check each event for whether it was
+liked as it was being rendered. If so, I added the like-enabled image to the end of the calendar item.
+
+It might be worth noting that I turned the renderItem/renderSectionHeader functions back into inline functions
+in the SectionList component. This was primarily done to simplify typing these functions, but it also served
+a practical purpose for the renderItem function as I was unable to include my custom hook when this function
+was extracted and, due to the time pressure, I figured it wasn't worth refactoring it to allow it.
+
+Finally, I began to work on the calendar API call but ran out of time on this feature. I began by installing
+the react-query package and adding its context provider, and I began to add its query hook into the calendar
+screen (this code is still there, but commented out so you can see the approach I was going for).
+
+I then created an external API file that included the fetch call to the API response, which would then return
+the normalised response back to the component in order to be rendered. I was able to call the API successfully
+using the provided API string and credentials, however I didn't think it'd be very smart to commit secret
+data to a public github repository so planned to use a `.env` file to include those values securely. However,
+I wasn't able to get this feature of Expo to work properly and by then I'd run out of time, so decided to call
+it a day.
+
+As the code to make the API call was correct and returning data back to the Calendar screen, the only main
+piece of code required to complete was to normalise the API response into a properly typed and SectionList-ready
+format.
