@@ -21,4 +21,18 @@ describe('EventDetails', () => {
 
     expect(artistTitle).toBeDefined();
   });
+
+  test('like and dislike button', () => {
+    const props = {
+      navigation: jest.fn(),
+      route: { params: { event } },
+    };
+
+    // @ts-expect-error incorrect props being passed (for now)
+    const { getByA11yLabel } = render(<EventDetails {...props} />);
+
+    const likeButton = getByA11yLabel('likeEvent');
+
+    expect(likeButton).toBeDefined();
+  });
 });
