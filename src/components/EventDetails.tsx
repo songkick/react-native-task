@@ -1,15 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { Event } from '../calendarData';
-import { useEventLikes } from '../modules/eventLikes/hooks/useEventLikes';
+import { EventLikesButton } from './EventLikesButton';
 
 interface Props extends NativeStackScreenProps<RootStackParamList, 'Event'> {}
 
 function EventDetails({ route }: Props) {
   const event = route.params.event;
-  const { eventLikes, toggleEventLike } = useEventLikes();
 
   const eventTitle = (eventData: Event) => {
     return `${eventData.performance[0].displayName} at ${eventData.venue.displayName}`;
@@ -41,19 +40,7 @@ function EventDetails({ route }: Props) {
           );
         })}
       </View>
-      <TouchableOpacity onPress={() => toggleEventLike(event.id)}>
-        {eventLikes.includes(event.id) ? (
-          <Image
-            accessibilityLabel="liked"
-            source={require('../img/thumbs-up-selected.png')}
-          />
-        ) : (
-          <Image
-            accessibilityLabel="not-liked"
-            source={require('../img/thumbs-up-unselected.png')}
-          />
-        )}
-      </TouchableOpacity>
+      <EventLikesButton eventId={event.id} />
     </View>
   );
 }
