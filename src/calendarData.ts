@@ -1,4 +1,90 @@
-export const calendarData = [
+
+type EventType = "Concert" | "Festival";
+type EventStatus = 'ok'
+
+interface EventStart {
+  date: string;
+  datetime: string | null;
+  time: string | null;
+}
+
+type PerformanceBilling = 'headline' | 'support'
+
+interface ArtistIdentifier {
+  mbid: string;
+  href: string;
+}
+
+interface Artist {
+  id: number
+  displayName: string
+  uri: string
+  identifier: ArtistIdentifier[],
+}
+
+export interface EventPerformance {
+  id: number
+  displayName: string
+  billing: PerformanceBilling
+  billingIndex: number,
+  artist: Artist
+}
+
+interface VenueCountry {
+  displayName: string;
+}
+
+interface VenueArea {
+  id: number
+  displayName: string
+  country: VenueCountry
+  uri: string
+
+}
+
+interface Venue {
+  id: number
+  displayName: string
+  uri: string;
+  metroArea: VenueArea;
+  lat: number | null
+  lng: number | null
+
+}
+
+interface Location {
+  city: string;
+  lat: number;
+  lng: number;
+}
+
+interface EventSeries {
+  displayName: string
+}
+
+export interface Event {
+  id: number
+  displayName: string
+  type: EventType
+  uri: string
+  status: EventStatus
+  popularity: number
+  start: EventStart
+  end?: EventStart
+  performance: EventPerformance[],
+  ageRestriction: null,
+  flaggedAsEnded: boolean
+  venue: Venue
+  location: Location
+  series?: EventSeries
+}
+
+export interface EventSection {
+  title: string;
+  data: Event[];
+}
+
+export const calendarData: EventSection[] = [
   {
     title: "November 2021",
     data: [

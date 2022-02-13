@@ -6,16 +6,21 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  SectionListRenderItem,
 } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
-import { calendarData } from "../calendarData";
+import { calendarData, Event, EventPerformance, EventSection } from "../calendarData";
 
-const UserCalendar = ({ navigation }) => {
-  const headliner = (performances) => {
+interface Props extends NativeStackScreenProps<RootStackParamList, "Calendar"> {}
+
+export function UserCalendar({ navigation }: Props)  {
+  const headliner = (performances: EventPerformance[]) => {
     return performances[0].displayName;
   };
 
-  const formatEventDate = (date) => {
+  const formatEventDate = (date: string) => {
     return new Date(date).toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
@@ -23,7 +28,7 @@ const UserCalendar = ({ navigation }) => {
     });
   };
 
-  const renderEventItem = ({ item }) => {
+  const renderEventItem: SectionListRenderItem<Event, EventSection> = ({item}) => {
     return (
       <TouchableOpacity
         style={styles.eventItem}
@@ -48,17 +53,15 @@ const UserCalendar = ({ navigation }) => {
     );
   };
 
-  const renderSectionHeader = ({ section: { title } }) => {
-    return <Text style={styles.header}>{title}</Text>;
-  };
-
   return (
     <View style={styles.container}>
       <SectionList
         sections={calendarData}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => `${item.id}`}
         renderItem={renderEventItem}
-        renderSectionHeader={renderSectionHeader}
+        renderSectionHeader={({section}) => {
+          return <Text style={styles.header}>{section.title}</Text>;
+        }}
       />
     </View>
   );
@@ -111,5 +114,3 @@ const styles = StyleSheet.create({
     color: "black",
   },
 });
-
-export default UserCalendar;

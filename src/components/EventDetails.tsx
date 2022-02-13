@@ -1,14 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
+import { Event } from "../calendarData";
 
-const EventDetails = ({ route }) => {
+interface Props extends NativeStackScreenProps<RootStackParamList, "Event"> {}
+
+function EventDetails({ route }: Props)  {
   const event = route.params.event;
 
-  const eventTitle = (eventData) => {
+  const eventTitle = (eventData: Event) => {
     return `${eventData.performance[0].displayName} at ${eventData.venue.displayName}`;
   };
 
-  const formatEventDate = (date) => {
+  const formatEventDate = (date: string) => {
     return new Date(date).toLocaleDateString("en-GB", {
       month: "long",
       day: "numeric",
