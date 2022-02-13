@@ -6,6 +6,7 @@ import { UserCalendar } from './src/components/UserCalendar';
 import EventDetails from './src/components/EventDetails';
 
 import { Event } from './src/calendarData';
+import { EventLikesProvider } from './src/modules/eventLikes/context/eventLikesProvider';
 
 export type RootStackParamList = {
   Calendar: undefined;
@@ -16,11 +17,13 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Calendar" component={UserCalendar} />
-        <Stack.Screen name="Event" component={EventDetails} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <EventLikesProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Calendar" component={UserCalendar} />
+          <Stack.Screen name="Event" component={EventDetails} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </EventLikesProvider>
   );
 }

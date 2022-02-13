@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import EventDetails from '../../src/components/EventDetails';
 
 import { event } from '../fixtures/events';
+import { EventLikesProvider } from '../../src/modules/eventLikes/context/eventLikesProvider';
 
 describe('EventDetails', () => {
   test('renders event info correctly', () => {
@@ -28,11 +29,21 @@ describe('EventDetails', () => {
       route: { params: { event } },
     };
 
-    // @ts-expect-error incorrect props being passed (for now)
-    const { getByA11yLabel } = render(<EventDetails {...props} />);
+    const { getByA11yLabel } = render(
+      <EventLikesProvider>
+        {/* @ts-expect-error incorrect props being passed (for now) */}
+        <EventDetails {...props} />
+      </EventLikesProvider>,
+    );
 
-    const likeButton = getByA11yLabel('likeEvent');
+    const notLikedButton = getByA11yLabel('not-liked');
 
-    expect(likeButton).toBeDefined();
+    expect(notLikedButton).toBeDefined();
+
+    fireEvent.press(notLikedButton);
+
+    const likedButton = getByA11yLabel('liked');
+
+    expect(likedButton).toBeDefined();
   });
 });
