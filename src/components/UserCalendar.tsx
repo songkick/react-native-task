@@ -12,12 +12,15 @@ import { RootStackParamList } from '../../App';
 
 import { calendarData, EventPerformance } from '../calendarData';
 import { useEventLikes } from '../modules/eventLikes/hooks/useEventLikes';
+// import { useQuery } from 'react-query';
+// import { fetchCalendarEvents } from '../api/calendar';
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, 'Calendar'> {}
 
 export function UserCalendar({ navigation }: Props) {
   const { eventLikes } = useEventLikes();
+  // const { status, data } = useQuery('calendarEvents', fetchCalendarEvents);
 
   const headliner = (performances: EventPerformance[]) => {
     return performances[0].displayName;

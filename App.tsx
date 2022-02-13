@@ -7,6 +7,9 @@ import EventDetails from './src/components/EventDetails';
 
 import { Event } from './src/calendarData';
 import { EventLikesProvider } from './src/modules/eventLikes/context/eventLikesProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 export type RootStackParamList = {
   Calendar: undefined;
@@ -17,13 +20,15 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <EventLikesProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Calendar" component={UserCalendar} />
-          <Stack.Screen name="Event" component={EventDetails} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </EventLikesProvider>
+    <QueryClientProvider client={queryClient}>
+      <EventLikesProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Calendar" component={UserCalendar} />
+            <Stack.Screen name="Event" component={EventDetails} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </EventLikesProvider>
+    </QueryClientProvider>
   );
 }
