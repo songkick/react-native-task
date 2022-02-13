@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   SectionList,
@@ -7,40 +7,48 @@ import {
   TouchableOpacity,
   Image,
   SectionListRenderItem,
-} from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+} from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-import { calendarData, Event, EventPerformance, EventSection } from "../calendarData";
+import {
+  calendarData,
+  Event,
+  EventPerformance,
+  EventSection,
+} from '../calendarData';
 
-interface Props extends NativeStackScreenProps<RootStackParamList, "Calendar"> {}
+interface Props
+  extends NativeStackScreenProps<RootStackParamList, 'Calendar'> {}
 
-export function UserCalendar({ navigation }: Props)  {
+export function UserCalendar({ navigation }: Props) {
   const headliner = (performances: EventPerformance[]) => {
     return performances[0].displayName;
   };
 
   const formatEventDate = (date: string) => {
-    return new Date(date).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
+    return new Date(date).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
     });
   };
 
-  const renderEventItem: SectionListRenderItem<Event, EventSection> = ({item}) => {
+  const renderEventItem: SectionListRenderItem<Event, EventSection> = ({
+    item,
+  }) => {
     return (
       <TouchableOpacity
         style={styles.eventItem}
         onPress={() =>
-          navigation.navigate("Event", {
+          navigation.navigate('Event', {
             event: item,
           })
         }
       >
         <Image
           style={styles.image}
-          source={require("../img/music-icon-band.jpeg")}
+          source={require('../img/music-icon-band.jpeg')}
         />
         <View style={styles.eventWrapper}>
           <Text style={styles.eventTitle}>{headliner(item.performance)}</Text>
@@ -57,35 +65,35 @@ export function UserCalendar({ navigation }: Props)  {
     <View style={styles.container}>
       <SectionList
         sections={calendarData}
-        keyExtractor={(item) => `${item.id}`}
+        keyExtractor={item => `${item.id}`}
         renderItem={renderEventItem}
-        renderSectionHeader={({section}) => {
+        renderSectionHeader={({ section }) => {
           return <Text style={styles.header}>{section.title}</Text>;
         }}
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     paddingHorizontal: 8,
   },
   header: {
     fontSize: 24,
-    fontWeight: "700",
-    color: "black",
-    backgroundColor: "white",
+    fontWeight: '700',
+    color: 'black',
+    backgroundColor: 'white',
     paddingVertical: 8,
   },
   eventItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     padding: 12,
-    backgroundColor: "#E4E5E7",
+    backgroundColor: '#E4E5E7',
     marginVertical: 4,
     borderRadius: 12,
   },
@@ -95,22 +103,22 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   eventWrapper: {
-    flexDirection: "column",
-    alignItems: "flex-start",
+    flexDirection: 'column',
+    alignItems: 'flex-start',
   },
   eventTitle: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "black",
+    fontWeight: '700',
+    color: 'black',
   },
   eventDate: {
     fontSize: 14,
-    fontWeight: "400",
-    color: "black",
+    fontWeight: '400',
+    color: 'black',
   },
   eventVenue: {
     fontSize: 14,
-    fontWeight: "400",
-    color: "black",
+    fontWeight: '400',
+    color: 'black',
   },
 });

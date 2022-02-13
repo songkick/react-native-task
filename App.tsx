@@ -1,11 +1,11 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {UserCalendar} from "./src/components/UserCalendar";
-import EventDetails from "./src/components/EventDetails";
+import { UserCalendar } from './src/components/UserCalendar';
+import EventDetails from './src/components/EventDetails';
 
-import { Event } from "./src/calendarData";
+import { Event } from './src/calendarData';
 
 export type RootStackParamList = {
   Calendar: undefined;
