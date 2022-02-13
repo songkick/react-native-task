@@ -6,22 +6,19 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  SectionListRenderItem,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 
-import {
-  calendarData,
-  Event,
-  EventPerformance,
-  EventSection,
-} from '../calendarData';
+import { calendarData, EventPerformance } from '../calendarData';
+import { useEventLikes } from '../modules/eventLikes/hooks/useEventLikes';
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, 'Calendar'> {}
 
 export function UserCalendar({ navigation }: Props) {
+  const { eventLikes } = useEventLikes();
+
   const headliner = (performances: EventPerformance[]) => {
     return performances[0].displayName;
   };
@@ -34,39 +31,42 @@ export function UserCalendar({ navigation }: Props) {
     });
   };
 
-  const renderEventItem: SectionListRenderItem<Event, EventSection> = ({
-    item,
-  }) => {
-    return (
-      <TouchableOpacity
-        style={styles.eventItem}
-        onPress={() =>
-          navigation.navigate('Event', {
-            event: item,
-          })
-        }
-      >
-        <Image
-          style={styles.image}
-          source={require('../img/music-icon-band.jpeg')}
-        />
-        <View style={styles.eventWrapper}>
-          <Text style={styles.eventTitle}>{headliner(item.performance)}</Text>
-          <Text style={styles.eventDate}>
-            {formatEventDate(item.start.date)}
-          </Text>
-          <Text style={styles.eventVenue}>{item.venue.displayName}</Text>
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <SectionList
         sections={calendarData}
         keyExtractor={item => `${item.id}`}
-        renderItem={renderEventItem}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity
+              style={styles.eventItem}
+              onPress={() =>
+                navigation.navigate('Event', {
+                  event: item,
+                })
+              }
+            >
+              <Image
+                style={styles.image}
+                source={require('../img/music-icon-band.jpeg')}
+              />
+              <View style={styles.eventWrapper}>
+                <Text style={styles.eventTitle}>
+                  {headliner(item.performance)}
+                </Text>
+                <Text style={styles.eventDate}>
+                  {formatEventDate(item.start.date)}
+                </Text>
+                <Text style={styles.eventVenue}>{item.venue.displayName}</Text>
+              </View>
+              <View style={styles.eventLiked}>
+                {eventLikes.includes(item.id) ? (
+                  <Image source={require('../img/thumbs-up-selected.png')} />
+                ) : null}
+              </View>
+            </TouchableOpacity>
+          );
+        }}
         renderSectionHeader={({ section }) => {
           return <Text style={styles.header}>{section.title}</Text>;
         }}
@@ -96,6 +96,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#E4E5E7',
     marginVertical: 4,
     borderRadius: 12,
+  },
+  eventLiked: {
+    alignItems: 'flex-end',
+    flexGrow: 1,
   },
   image: {
     height: 54,
